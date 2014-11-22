@@ -100,9 +100,8 @@ $(function() {
                 return '1NXlL01wokbqMDKaHiicj1';
             }
 
-            var writeImageToFolder = function (imageURL)
-            {
-              
+            var writeImageToFolder = function(imageURL) {
+
             }
 
             document.getElementById('createImage-button').addEventListener('click', function() {
@@ -147,9 +146,22 @@ $(function() {
                 var success = function(data) {
                     console.log('success!');
                     //console.log(data);
+                    var imageUrls = [];
                     for (var i = data.items.length - 1; i >= 0; i--) {
-                      console.log(data.items[i].track.album.images[2]);
+                        //console.log(data.items[i].track.album.images[2]);
+                        imageUrls.push(data.items[i].track.album.images[2].url);
+                        console.log(data.items[i].track.album.images[2].url);
                     };
+
+                    console.log('img urls:::' + imageUrls);
+                    $.ajax({
+                        url: 'http://localhost:8888/writeToFile',
+                        data: {
+                          images : imageUrls},
+                        success: function(response) {
+                            console.log('success again!');
+                        },
+                    });
                 }
 
                 $.ajax({
