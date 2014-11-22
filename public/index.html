@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MusicMe</title>
+
+
+</head>
+
+<body>
+    <div class="container">
+        Hi hi this is our epic page!
+        <br>
+        <div id="loggedin">
+            <div id="user-profile">
+            </div>
+            <div id="oauth">
+            </div>
+        </div>
+        <button id="login-button" class="btn btn-primary">Log in with Spotify</button>
+        <br>
+
+            <div class="form-group">
+                <label for="imageToUse">File input</label>
+                <input type="file" id="imageToUse">
+                <p class="help-block">Select the image you want to re-create</p>
+            </div>
+            <div class="form-group">
+                <label for="playlistURL">Spotify Playlist</label>
+                <input type="text" class="form-control" id="playlistURL" placeholder="Playlist URL">
+            </div>
+            <button id="createImage-button" class="btn btn-default">Create!</button>
+    </div>
+    <div id="playlistContent"></div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+
+<!-- TEMPORARY TEMPORARRY -->
+<script id="user-profile-template" type="text/x-handlebars-template">
+    <h1>Logged in as {{display_name}}</h1>
+    <div class="media">
+        <div class="pull-left">
+            <img class="media-object" width="150" src="{{images.0.url}}" />
+        </div>
+        <div class="media-body">
+            <dl class="dl-horizontal">
+                <dt>Display name</dt>
+                <dd class="clearfix">{{display_name}}</dd>
+                <dt>Id</dt>
+                <dd>{{id}}</dd>
+                <dt>Email</dt>
+                <dd>{{email}}</dd>
+                <dt>Spotify URI</dt>
+                <dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a>
+                </dd>
+                <dt>Link</dt>
+                <dd><a href="{{href}}">{{href}}</a>
+                </dd>
+                <dt>Profile Image</dt>
+                <dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a>
+                </dd>
+                <dt>Country</dt>
+                <dd>{{country}}</dd>
+            </dl>
+        </div>
+    </div>
+</script>
+
+<script id="oauth-template" type="text/x-handlebars-template">
+    <h2>oAuth info</h2>
+    <dl class="dl-horizontal">
+        <dt>Access token</dt>
+        <dd class="text-overflow">{{access_token}}</dd>
+    </dl>
+</script>
+<script id="oauth-template" type="text/x-handlebars-template">
+      <h2>oAuth info</h2>
+      <dl class="dl-horizontal">
+        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
+      </dl>
+    </script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+<!-- TEMPORARY TEMPORARRY -->
+
+<script src="js/loginController.js"></script>
+
+
+</html>
