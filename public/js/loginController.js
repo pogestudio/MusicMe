@@ -104,7 +104,7 @@ $(function() {
 
             }
 
-            document.getElementById('createImage-button').addEventListener('click', function() {
+            document.getElementById('fetchImages-button').addEventListener('click', function() {
 
                 var user = userForPlaylist();
                 var playlistID = playlistIdForPlaylist();
@@ -157,7 +157,8 @@ $(function() {
                     $.ajax({
                         url: 'http://localhost:8888/writeToFile',
                         data: {
-                          images : imageUrls},
+                            images: imageUrls
+                        },
                         success: function(response) {
                             console.log('success again!');
                         },
@@ -171,6 +172,18 @@ $(function() {
                         xhr.setRequestHeader("Authorization", "Bearer " + access_token);
                     },
                     success: success,
+                });
+
+            }, false);
+
+            document.getElementById('createImage-button').addEventListener('click', function() {
+
+
+                $.ajax({
+                    url: 'http://localhost:8888/createImage',
+                    success: function(response) {
+                        console.log('sucess calling create Image!');
+                    },
                 });
 
             }, false);

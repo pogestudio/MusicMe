@@ -48,5 +48,12 @@ app.get('/writeToFile', function(req, res) {
 
     res.send('');
 });
+
+app.get('/createImage', function(req, res) {
+    console.log('now we are in create image!!!!');
+
+
+    res.send('');
+});
 console.log('Listening on 8888');
 app.listen(8888);
