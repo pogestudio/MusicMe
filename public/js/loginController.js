@@ -201,6 +201,21 @@ $(function() {
 
             }, false);
 
+
+            document.getElementById('fetchSingleImage-button').addEventListener('click', function() {
+                var input = document.getElementById('imageToUse');
+                var imageURL = input.value;
+                $.ajax({
+                    url: 'http://localhost:8888/saveImageToServer',
+                    data: {
+                        image: imageURL
+                    },
+                    success: function(response) {
+                        console.log('success saving single image!');
+                    },
+                });
+            }, false);
+
         }
     })();
 });
