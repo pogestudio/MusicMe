@@ -160,6 +160,7 @@ $(function() {
                     console.log('success!');
                     //console.log(data);
                     var imageUrls = [];
+                    var amountOfAlbums = data.items.length;
                     for (var i = data.items.length - 1; i >= 0; i--) {
                         //console.log(data.items[i].track.album.images[2]);
                         imageUrls.push(data.items[i].track.album.images[2].url);
@@ -174,6 +175,8 @@ $(function() {
                         },
                         success: function(response) {
                             console.log('success again!');
+                            document.getElementById('albumSuccess').innerHTML = 'Fetched ' + amountOfAlbums + ' albums!';
+
                         },
                     });
                 }
@@ -218,7 +221,7 @@ $(function() {
                     },
                     success: function(response) {
                         console.log('success saving single image!');
-                        document.getElementById('fetchSingleImage-button').innerHTML = 'Success!';
+                        document.getElementById('singleImageSuccess').innerHTML = 'Success!';
                     },
                 });
             }, false);
