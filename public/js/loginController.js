@@ -94,11 +94,21 @@ $(function() {
             }, false);
 
             var userForPlaylist = function() {
-                return 'dannepro';
+                var textField = document.getElementById('playlistURL');
+                var completeString = textField.value;
+                var res = completeString.split(":");
+                var userName = res[2];
+                console.log('playlist username:: ' + userName);
+                return userName;
             }
 
             var playlistIdForPlaylist = function() {
-                return '1NXlL01wokbqMDKaHiicj1';
+                var textField = document.getElementById('playlistURL');
+                var completeString = textField.value;
+                var res = completeString.split(":");
+                var playlistID = res[4];
+                console.log('playlist id:: ' + playlistID);
+                return playlistID;
             }
 
             var writeImageToFolder = function(imageURL) {

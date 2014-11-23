@@ -12,7 +12,7 @@ var app = express();
 
 var PythonShell = require('python-shell');
 
-
+var tempImageFolder = "public/tmp";
 
 var writeImageUrlToFolder = function(imageUrl, index) {
     var fs = require('fs');
@@ -24,7 +24,7 @@ var writeImageUrlToFolder = function(imageUrl, index) {
         url: imageUrl,
         encoding: 'binary'
     }, function(err, response, body) {
-        fs.writeFile("public/tmp/" + index, body, 'binary', function(err) {
+        fs.writeFile(tempImageFolder + '/'+index, body, 'binary', function(err) {
             if (err)
                 console.log(err);
             else
@@ -41,13 +41,52 @@ app.get('/writeToFile', function(req, res) {
     console.log(req.query.images);
 
 
+    var Sync = require('sync');
 
-    for (var i = req.query.images.length - 1; i >= 0; i--) {
-        var imageUrl = req.query.images[i]
-        writeImageUrlToFolder(imageUrl, i);
-    };
+    function deleteFiles(dirPath, callback) {
+            process.nextTick(function() {
+                var fs = require('fs');
 
+                console.log('gonna try to remove shit in ' + dirPath);
+                var rmDir = function(dirPath) {
+                    try {
+                        var files = fs.readdirSync(dirPath);
+                        console.log('found files in dirpath:');
+                        console.log(files);
+                    } catch (e) {
+                        return;
+                    }
+                    if (files.length > 0)
+                        for (var i = 0; i < files.length; i++) {
+                            var filePath = dirPath + '/' + files[i];
+                            if (fs.statSync(filePath).isFile())
+                                fs.unlinkSync(filePath);
+                            else
+                                rmDir(filePath);
+                        }
+                        //fs.rmdirSync(dirPath);
+                    callback();
+                };
+                rmDir(dirPath);
+            });
+        }
+        //var fs = require('fs');
 
+    // Run in a fiber
+    Sync(function() {
+
+        var writeFiles = function() {
+
+                for (var i = req.query.images.length - 1; i >= 0; i--) {
+                    var imageUrl = req.query.images[i]
+                    writeImageUrlToFolder(imageUrl, i);
+                };
+            }
+            //var arrayOfFolders = fs.readdirSync(tempImageFolder);
+
+        //console.log(arrayOfFolders);
+        deleteFiles(tempImageFolder, writeFiles);
+    })
     res.send('');
 });
 
