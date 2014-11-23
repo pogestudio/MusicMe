@@ -24,17 +24,19 @@
         <button id="login-button" class="btn btn-primary">Log in with Spotify</button>
         <br>
 
-            <div class="form-group">
-                <label for="imageToUse">File input</label>
-                <input type="file" id="imageToUse">
-                <p class="help-block">Select the image you want to re-create</p>
-            </div>
-            <div class="form-group">
-                <label for="playlistURL">Spotify Playlist</label>
-                <input type="text" class="form-control" id="playlistURL" placeholder="Playlist URL">
-            </div>
-            <button id="fetchImages-button" class="btn btn-default">Fetch Images!</button>
-            <button id="createImage-button" class="btn btn-default">Create!</button>
+        <div class="form-group">
+            <label for="imageToUse">File input</label>
+            <input type="file" id="imageToUse">
+            <p class="help-block">Select the image you want to re-create</p>
+        </div>
+        <div class="form-group">
+            <label for="playlistURL">Spotify Playlist</label>
+            <input type="text" class="form-control" id="playlistURL" placeholder="Playlist URL">
+        </div>
+        <button id="fetchImages-button" class="btn btn-default">Fetch Images!</button>
+        <button id="createImage-button" class="btn btn-default">Create!</button>
+        <div id="containerOfMotherFuckingDooom" class="resultImageContainer"></div>
+
     </div>
     <div id="playlistContent"></div>
 
@@ -50,6 +52,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" href="main.css">
 
 <!-- TEMPORARY TEMPORARRY -->
 <script id="user-profile-template" type="text/x-handlebars-template">
@@ -90,15 +93,17 @@
     </dl>
 </script>
 <script id="oauth-template" type="text/x-handlebars-template">
-      <h2>oAuth info</h2>
-      <dl class="dl-horizontal">
-        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
-      </dl>
-    </script>
+    <h2>oAuth info</h2>
+    <dl class="dl-horizontal">
+        <dt>Access token</dt>
+        <dd class="text-overflow">{{access_token}}</dd>
+    </dl>
+</script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
 <!-- TEMPORARY TEMPORARRY -->
 
 <script src="js/loginController.js"></script>
+<script src="js/imageHandler.js"></script>
 
 
 </html>

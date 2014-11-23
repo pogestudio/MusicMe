@@ -1,6 +1,7 @@
 $(function() {
     (function() {
 
+
         var stateKey = 'spotify_auth_state';
 
         /**
@@ -183,10 +184,13 @@ $(function() {
                     url: 'http://localhost:8888/createImage',
                     success: function(response) {
                         console.log('sucess calling create Image!');
+                        replaceImageOnScreen();
+
                     },
                 });
 
             }, false);
+
         }
     })();
 });

@@ -55,20 +55,46 @@ app.get('/createImage', function(req, res) {
     console.log('now we are in create image!!!!');
 
 
-var options = {
-  mode: 'text',
-  pythonOptions: ['-u'],
-  args: ['image.jpg', 'public/tmp']
-};
-
-PythonShell.run('mosaic.py', options, function (err, results) {
-  if (err) throw err;
-  // results is an array consisting of messages collected during execution
-  console.log('results: %j', results);
-});
+    var options = {
+        mode: 'text',
+        pythonOptions: ['-u'],
+        args: ['image.jpg', 'public/tmp']
+    };
 
 
-    res.send('');
+    var Sync = require('sync');
+
+    function asyncFunction(callback) {
+        process.nextTick(function() {
+            PythonShell.run('mosaic.py', options, function(err, results) {
+                if (err) throw err;
+                // results is an array consisting of messages collected during execution
+                console.log('results: %j', results);
+                callback();
+
+            });
+        });
+    }
+
+    // Run in a fiber
+    Sync(function() {
+
+        var sendBackShit = function() {
+            console.log('finished image!');
+            res.send('');
+        }
+        asyncFunction(sendBackShit);
+    })
+
+    // PythonShell.run('mosaic.py', options, function(err, results) {
+    //     if (err) throw err;
+    //     // results is an array consisting of messages collected during execution
+    //     console.log('results: %j', results);
+
+    // });
+
+
+    // res.send('');
 });
 console.log('Listening on 8888');
 app.listen(8888);
