@@ -35,6 +35,26 @@ var writeImageUrlToFolder = function(imageUrl, index) {
 }
 
 
+var writeImageUrlToMainFolder = function(imageUrl) {
+    var fs = require('fs');
+    var request = require('request');
+    // Or with cookies
+    // var request = require('request').defaults({jar: true});
+
+    request.get({
+        url: imageUrl,
+        encoding: 'binary'
+    }, function(err, response, body) {
+        fs.writeFile('image.jpg', body, 'binary', function(err) {
+            if (err)
+                console.log(err);
+            else
+                console.log("The file was saved!");
+        });
+    });
+
+}
+
 app.use(express.static(__dirname + '/public'));
 app.get('/writeToFile', function(req, res) {
     console.log('WRITING!!!');
@@ -96,5 +116,15 @@ app.get('/createImage', function(req, res) {
 
     // res.send('');
 });
+
+app.get('/saveImageToServer', function(req, res) {
+    console.log('WRITING!!!');
+    var imageUrl = req.query.image;
+    console.log(imageUrl);
+
+    writeImageUrlToMainFolder(imageUrl);
+    res.send('');
+});
+
 console.log('Listening on 8888');
 app.listen(8888);
