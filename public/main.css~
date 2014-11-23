@@ -1,0 +1,92 @@
+body{
+ background: #262525;
+}
+
+.flow{
+    margin-top: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+
+.resultImageContainer {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.pic{
+    display: inline;
+    max-width: 50%;
+    max-height: 50%;
+}
+.resultImage {
+    max-width: 100%;
+    max-height: 800px;
+}
+
+.picture{
+   width:400px;
+
+}
+
+.cooltext1{
+    padding-left:2em;
+    display: inline;
+    color: #fff;
+    font-family: "Futura";
+    font-size: 3em;
+    font-weight: bold;
+}
+.cooltext2{
+    padding-left:8em;
+    display: inline;
+    color: #fff;
+    font-family: "Futura";
+    font-size: 3em;
+    font-weight: bold;
+}
+.cooltext3{
+    padding-left:8em;
+    display: inline;
+    color: #fff;
+    font-family: "Futura";
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.inputfields{
+  margin-top: 2em;
+  background:#fff;
+  width:100%;
+  height: 300px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+
+.inputf{
+  width:500px;
+  padding-top:1.5em;
+  padding-left:2em;
+}
+
+.ccc{
+  padding-top:1em;
+  padding-bottom:1em;
+  padding-left:1em;
+  padding-right:1em;
+  background:#ccc;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.buttons{
+  padding-top:0.5em;
+  padding-right:0.5em;
+}
+
+.createbut{
+  padding-top:1.5em;
+  padding-left:2em;
+}
+
