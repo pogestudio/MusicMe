@@ -194,14 +194,14 @@ $(function() {
             }, false);
 
             document.getElementById('createImage-button').addEventListener('click', function() {
-
+                startSpinningIndicator();
 
                 $.ajax({
                     url: 'http://localhost:8888/createImage',
                     success: function(response) {
                         console.log('sucess calling create Image!');
                         replaceImageOnScreen();
-
+                        stopSpinningIndicator();
                     },
                 });
 
