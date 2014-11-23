@@ -218,6 +218,7 @@ $(function() {
                     },
                     success: function(response) {
                         console.log('success saving single image!');
+                        document.getElementById('fetchSingleImage-button').innerHTML = 'Success!';
                     },
                 });
             }, false);
