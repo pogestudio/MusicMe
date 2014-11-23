@@ -99,11 +99,31 @@ $(function() {
 
 
 
+            // var userForPlaylist = function() {
+            //     var textField = document.getElementById('playlistURL');
+            //     var completeString = textField.value;
+            //     var res = completeString.split(":");
+            //     var userName = res[2];
+            //     console.log('playlist username:: ' + userName);
+            //     return userName;
+            // }
+
+            // var playlistIdForPlaylist = function() {
+            //     var textField = document.getElementById('playlistURL');
+            //     var completeString = textField.value;
+            //     var res = completeString.split(":");
+            //     var playlistID = res[4];
+            //     console.log('playlist id:: ' + playlistID);
+            //     return playlistID;
+            // }
+
+
             var userForPlaylist = function() {
                 var textField = document.getElementById('playlistURL');
                 var completeString = textField.value;
-                var res = completeString.split(":");
-                var userName = res[2];
+                var res = completeString.split("/");
+                var indexForUserName = res.length - 3;
+                var userName = res[indexForUserName];
                 console.log('playlist username:: ' + userName);
                 return userName;
             }
@@ -111,8 +131,9 @@ $(function() {
             var playlistIdForPlaylist = function() {
                 var textField = document.getElementById('playlistURL');
                 var completeString = textField.value;
-                var res = completeString.split(":");
-                var playlistID = res[4];
+                var res = completeString.split("/");
+                var indexForID = res.length - 1;
+                var playlistID = res[indexForID];
                 console.log('playlist id:: ' + playlistID);
                 return playlistID;
             }
