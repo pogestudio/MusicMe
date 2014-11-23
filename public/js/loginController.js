@@ -73,8 +73,7 @@ $(function() {
                 $('#loggedin').hide();
             }
 
-            document.getElementById('login-button').addEventListener('click', function() {
-
+            var logInWithSpotify = function() {
                 var client_id = '03ffe0cac0a0401aa6673c3cf6d02ced'; // Your client id
                 var redirect_uri = 'http://localhost:8888/'; // Your redirect uri
 
@@ -91,7 +90,14 @@ $(function() {
                 url += '&state=' + encodeURIComponent(state);
 
                 window.location = url;
+            }
+
+            document.getElementById('login-button').addEventListener('click', function() {
+
+                logInWithSpotify();
             }, false);
+
+
 
             var userForPlaylist = function() {
                 var textField = document.getElementById('playlistURL');
@@ -109,10 +115,6 @@ $(function() {
                 var playlistID = res[4];
                 console.log('playlist id:: ' + playlistID);
                 return playlistID;
-            }
-
-            var writeImageToFolder = function(imageURL) {
-
             }
 
             document.getElementById('fetchImages-button').addEventListener('click', function() {
@@ -144,11 +146,11 @@ $(function() {
 
                 console.log('firing!');
 
-                xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("GET", url, false);
-                xmlHttp.setRequestHeader("Authorization", "Bearer " + access_token);
-                var response = xmlHttp.send();
-                console.log(response);
+                //xmlHttp = new XMLHttpRequest();
+                //xmlHttp.open("GET", url, false);
+                //xmlHttp.setRequestHeader("Authorization", "Bearer " + access_token);
+                //var response = xmlHttp.send();
+                //console.log(response);
 
                 var data = {
                     fields: 'items.track.album(images)',
@@ -183,6 +185,10 @@ $(function() {
                         xhr.setRequestHeader("Authorization", "Bearer " + access_token);
                     },
                     success: success,
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status);
+                        alert(thrownError);
+                    }
                 });
 
             }, false);
